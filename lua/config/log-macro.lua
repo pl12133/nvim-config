@@ -5,6 +5,7 @@ local M = {}
 --- Macro strings keyed by filetype.
 --- Each macro: yank word under cursor, new line below, insert log statement for the variable.
 local macros = {
+  javascript      = [[yeoconsole.log("pa:", pa);]],
   javascriptreact = [[yeoconsole.log("pa:", pa);]],
   typescriptreact = [[yeoconsole.log("pa:", pa);]],
   ruby            = [[yeoputs "pa: #{pa}"]],
