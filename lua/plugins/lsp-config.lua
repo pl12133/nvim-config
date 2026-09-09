@@ -1,7 +1,21 @@
 return {
   "neovim/nvim-lspconfig",
   opts = {
-    servers = { eslint = {} },
+    servers = {
+      eslint = {},
+      ruby_lsp = {
+        -- Neovim inherits the global rbenv Ruby (3.1.4), but this project
+        -- requires 3.4.8. Without this, ruby-lsp crashes during bundle setup
+        -- and never attaches (see ~/.local/state/nvim/lsp.log).
+        cmd = function(dispatchers, config)
+          return vim.lsp.rpc.start(
+            { "bash", "-lc", "rbenv exec ruby-lsp" },
+            dispatchers,
+            config and config.root_dir and { cwd = config.root_dir }
+          )
+        end,
+      },
+    },
     setup = {
       eslint = function()
         require("snacks.util.lsp").on(function(_, client)
