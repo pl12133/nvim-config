@@ -17,7 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim",                                    import = "lazyvim.plugins" },
     -- LazyVim extras must come before your own `plugins` import (see LazyVim import order check)
     { import = "lazyvim.plugins.extras.linting.eslint" },
     { import = "lazyvim.plugins.extras.formatting.prettier" },
@@ -53,3 +53,5 @@ require("lazy").setup({
     },
   },
 })
+
+require("config.commands").setup()
